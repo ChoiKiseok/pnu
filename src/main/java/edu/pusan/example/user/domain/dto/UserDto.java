@@ -1,4 +1,4 @@
-package edu.pusan.example.login.domain.dto;
+package edu.pusan.example.user.domain.dto;
 
 import lombok.Data;
 

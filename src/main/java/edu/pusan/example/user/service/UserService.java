@@ -1,12 +1,12 @@
-package edu.pusan.example.login.service;
+package edu.pusan.example.user.service;
 
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import edu.pusan.example.login.domain.UserVO;
-import edu.pusan.example.login.domain.dto.UserDto;
-import edu.pusan.example.login.repository.UserRepository;
+import edu.pusan.example.user.domain.UserVO;
+import edu.pusan.example.user.domain.dto.UserDto;
+import edu.pusan.example.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
 @Service

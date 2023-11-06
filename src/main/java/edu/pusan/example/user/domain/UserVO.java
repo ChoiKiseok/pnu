@@ -1,4 +1,4 @@
-package edu.pusan.example.login.domain;
+package edu.pusan.example.user.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -1,4 +1,4 @@
-package edu.pusan.example.login.controller;
+package edu.pusan.example.user.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -6,9 +6,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import edu.pusan.example.login.domain.UserVO;
-import edu.pusan.example.login.domain.dto.UserDto;
-import edu.pusan.example.login.service.UserService;
+import edu.pusan.example.user.domain.UserVO;
+import edu.pusan.example.user.domain.dto.UserDto;
+import edu.pusan.example.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 
 @Controller
