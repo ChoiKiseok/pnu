@@ -1,12 +1,12 @@
 package edu.pusan.example.user.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import edu.pusan.example.user.domain.UserVO;
+import edu.pusan.example.user.domain.User;
 import edu.pusan.example.user.domain.dto.UserDto;
 import edu.pusan.example.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -27,10 +27,10 @@ public class UserController {
   }
 
   @PostMapping("/login")
-  public String loginProcess(HttpServletRequest request, UserDto userDto) {
+  public String loginProcess(HttpSession session, UserDto user) {
     
-    if(userService.checkUser(userDto)) {
-      request.getSession().setAttribute("userId", userDto.getUserId());
+    if(userService.checkUser(user)) {
+      session.setAttribute("User", user.getUserId());
       return "redirect:/";
     } else {
       return "redirect:/loginPage";
@@ -38,7 +38,7 @@ public class UserController {
   }
 
   @PostMapping("/user/insert")
-  public String insertUser(UserVO userVO) {
+  public String insertUser(User userVO) {
     userService.insertUser(userVO);
 
     return "redirect:/loginPage";

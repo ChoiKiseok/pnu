@@ -1,52 +1,82 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  <title>회원가입</title>
+	<meta charset="UTF-8">
+	<title>회원가입</title>
 </head>
-<body style="
-position: absolute;
-height: 100%;
-max-height: 1200px;
-min-height: 500px;
-width: 100%;
-">
-  <div style="
-  position: relative;
-  width: 100%;
-  max-width: 350px;
-  top: 30%;
-  left: 44%;
-  background: #dbd8d3;
-  padding: 25px;
-  border: 1px solid;
-">
-    <form method="post" action="/user/insert">
-      <div class="mb-3">
-        <label for="userId" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="userId" name="userId" aria-describedby="emailHelp">
-      </div>
-      <div class="mb-3">
-        <label for="userPwd" class="form-label">Password</label>
-        <input type="password" class="form-control" name="userPwd" id="userPwd">
-      </div>
-      <div class="mb-3">
-        <label for="userName" class="form-label">Name</label>
-        <input type="text" class="form-control" name="userNm" id="userName">
-      </div>
-      <div class="mb-3">
-        <label for="tel" class="form-label">Tel.</label>
-        <input type="tel" class="form-control" name="tel" id="tel">
-      </div>
-      <button type="submit" class="btn btn-primary">SignUp</button>
-    </form>
-  </div>
+<body>
+	<form action="signUp.do" method="post" id="signUpForm">
+		<table>
+			<thead>
+				<tr>
+					<th colspan="2">회원가입</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th>아이디*</th>
+					<td><input type="text" value="" name="userId" required="required"/></td>
+				</tr>
+				<tr>
+					<th>비밀번호*</th>
+					<td><input type="password" name="pwd" id="pwdInput" required="required"/></td>
+				</tr>
+				<tr>
+					<th>비밀번호 확인*</th>
+					<td><input type="password" id="pwdCheckInput" required="required"/></td>
+				</tr>
+				<tr>
+					<th>이름*</th>
+					<td><input type="text" value="" name="name" required="required"/></td>
+				</tr>
+				<tr>
+					<th>부서*</th>
+					<td>
+						<select name="deptCd" required="required">
+							<c:forEach items="${dept}" var="item">
+								<option value="${item.deptCd}"><c:out value="${item.deptNm}"/></option>
+							</c:forEach>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<th>직급</th>
+					<td><input type="text" value="" name="job"/></td>
+				</tr>
+				<tr>
+					<th>연락처</th>
+					<td><input type="text" value="" name="phone"/></td>
+				</tr>
+				<tr>
+					<th>메일</th>
+					<td><input type="text" value="" name="email"/></td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<button type="button" onclick="window.history.back()">이전</button>
+		<button type="button" id="okBtn">등록</button>
+	</form>
 </body>
+
+<script src="https://code.jquery.com/jquery-3.6.1.js"></script>
+<script>
+	
+	window.onload = function(){
+		
+		$("#okBtn").click(function() {
+			var pwd = $("#pwdInput").val();
+			var pwdCheck = $("#pwdCheckInput").val();
+			
+			if(pwd == pwdCheck){
+				$("#signUpForm").submit();
+			} else {
+				alert("비밀번호를 확인해주세요.");
+			}
+		});
+	} 
+	
+</script>
 </html>

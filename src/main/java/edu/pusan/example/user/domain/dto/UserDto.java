@@ -1,9 +1,17 @@
 package edu.pusan.example.user.domain.dto;
 
-import lombok.Data;
+import lombok.Builder;
+import lombok.Getter;
 
-@Data
+@Getter
+@Builder
 public class UserDto {
   private String userId;
-  private String userPwd;
+  private String pwd;
+  private String name;
+  private String deptCd;
+  private String deptNm;
+  private String job;
+  private String email;
+  private String phone;
 }

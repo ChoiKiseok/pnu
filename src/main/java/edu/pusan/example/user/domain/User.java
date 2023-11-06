@@ -7,10 +7,13 @@ import lombok.Data;
 
 @Data
 @Entity(name = "tb_user")
-public class UserVO {
+public class User {
   @Id
   private String userId;
-  private String userPwd;
-  private String userNm;
-  private String tel;
+  private String pwd;
+  private String name;
+  private String deptCd;
+  private String job;
+  private String email;
+  private String phone;
 }
