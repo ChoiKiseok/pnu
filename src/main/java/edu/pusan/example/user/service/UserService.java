@@ -4,6 +4,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import edu.pusan.example.dept.service.DeptService;
 import edu.pusan.example.user.domain.User;
 import edu.pusan.example.user.domain.dto.UserDto;
 import edu.pusan.example.user.repository.UserRepository;
@@ -13,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class UserService {
   private final UserRepository userRepository;
+  private final DeptService deptService;
 
   public UserDto getUserInfo(UserDto userDto) {
     User user = userRepository.findById(userDto.getUserId()).get();
@@ -23,6 +25,7 @@ public class UserService {
       .job(user.getJob())
       .name(user.getName())
       .phone(user.getPhone())
+      .deptNm(user.getDept().getDeptNm())
       .build();
   }
 
@@ -40,7 +43,9 @@ public class UserService {
     }
   }
 
-  public void insertUser(User user) {
+  public void insertUser(UserDto userDto) {
+    User user = userDto.build();
+    user.setDept(deptService.getDeptInfo(userDto.getDeptCd()));
     userRepository.save(user);
   }
 }

@@ -7,7 +7,7 @@
 	<title>회원가입</title>
 </head>
 <body>
-	<form action="signUp.do" method="post" id="signUpForm">
+	<form action="signUp" method="post" id="signUpForm">
 		<table>
 			<thead>
 				<tr>
