@@ -37,9 +37,9 @@ public class UserController {
     
     if(userService.checkUser(user)) {
       session.setAttribute("USER", userService.getUserInfo(user));
-      return "main";
+      return "redirect:/main";
     } else {
-      return "login";
+      return "redirect:/loginPage";
     }
   }
 
@@ -48,13 +48,13 @@ public class UserController {
     
     userService.insertUser(userDto);
 
-    return "login";
+    return "redirect:/loginPage";
   }
 
   @GetMapping("logout")
   public String logout(HttpSession session) {
     session.invalidate();
-    return "login";
+    return "redirect:/loginPage";
   }
   
 }
