@@ -15,6 +15,12 @@ import lombok.RequiredArgsConstructor;
 public class UserService {
   private final UserRepository userRepository;
   private final DeptService deptService;
+  
+  public void insertUser(UserDto userDto) {
+    User user = userDto.build();
+    user.setDept(deptService.getDeptInfo(userDto.getDeptCd()));
+    userRepository.save(user);
+  }
 
   public UserDto getUserInfo(UserDto userDto) {
     User user = userRepository.findById(userDto.getUserId()).get();
@@ -43,9 +49,4 @@ public class UserService {
     }
   }
 
-  public void insertUser(UserDto userDto) {
-    User user = userDto.build();
-    user.setDept(deptService.getDeptInfo(userDto.getDeptCd()));
-    userRepository.save(user);
-  }
 }

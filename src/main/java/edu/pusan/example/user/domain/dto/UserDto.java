@@ -18,14 +18,12 @@ public class UserDto {
 
   public User build() {
     User user = new User();
-
     user.setUserId(userId);
     user.setPwd(pwd);
     user.setEmail(email);
     user.setJob(job);
     user.setName(name);
     user.setPhone(phone);
-
     return user;
   }
 }

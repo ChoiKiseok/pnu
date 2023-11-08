@@ -13,6 +13,7 @@ import edu.pusan.example.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -25,7 +26,7 @@ public class UserController {
     return "login";
   }
 
-  @GetMapping("/signUp")
+  @GetMapping("/signUpPage")
   public String signUpPage(Model model) {
     model.addAttribute("dept", deptService.getDeptList());
     return "signUp";
@@ -35,7 +36,6 @@ public class UserController {
   public String loginProcess(HttpSession session, UserDto user) {
     
     if(userService.checkUser(user)) {
-      log.info("--------- {} ----------", userService.getUserInfo(user));
       session.setAttribute("USER", userService.getUserInfo(user));
       return "redirect:/main";
     } else {
@@ -50,4 +50,11 @@ public class UserController {
 
     return "redirect:/loginPage";
   }
+
+  @GetMapping("logout")
+  public String logout(HttpSession session) {
+    session.invalidate();
+    return "login";
+  }
+  
 }

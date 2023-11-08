@@ -33,7 +33,7 @@
 			</table>
 			<br>
 			<div>
-				<button type="button" onclick="window.location.href='signUp'">회원가입</button>
+				<button type="button" onclick="window.location.href='signUpPage'">회원가입</button>
 				<button type="submit">로그인</button>
 			</div>
 		</fieldset>

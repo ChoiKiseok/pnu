@@ -13,10 +13,10 @@
 	<h2>job : <c:out value="${USER.job}"></c:out></h2>
 	<h2>phone : <c:out value="${USER.phone}"></c:out></h2>
 	
-	<button type="button" style="float: left" onclick="window.location.href='logout.do'"> 
+	<button type="button" style="float: left" onclick="window.location.href='logout'"> 
 		로그아웃 </button>
 	
-	<button type="button" style="float: left" onclick="window.location.href='pwdConfirmPage.do'"> 
+	<button type="button" style="float: left" onclick="window.location.href='pwdConfirmPage'"> 
 		회원정보수정 </button>
 </body>
 </html>
