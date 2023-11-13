@@ -34,6 +34,7 @@ public class UserService {
       .name(user.getName())
       .phone(user.getPhone())
       .deptNm(user.getDept().getDeptNm())
+      .deptCd(user.getDept().getDeptCd())
       .build();
   }
 
@@ -50,6 +51,16 @@ public class UserService {
     } else {
       return false;
     }
+  }
+
+  public void updatetUser(UserDto userDto) {
+    User user = userDto.build();
+    user.setDept(deptService.getDeptInfo(userDto.getDeptCd()));
+    userRepository.save(user);
+  }
+
+  public void deleteUser(String userId) {
+    userRepository.deleteById(userId);
   }
 
 }

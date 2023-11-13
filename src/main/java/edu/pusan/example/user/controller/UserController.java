@@ -31,6 +31,12 @@ public class UserController {
     return "signUp";
   }
 
+  @GetMapping("userUpdatePage")
+  public String userUpdatePage(Model model) {
+    model.addAttribute("dept", deptService.getDepts());
+    return "userUpdate";
+  }
+
   @PostMapping("/login")
   public String loginProcess(HttpSession session, UserDto user) {
     if(userService.checkUser(user)) {
@@ -51,6 +57,22 @@ public class UserController {
 
   @GetMapping("/logout")
   public String logoutProcess(HttpSession session) {
+    session.invalidate();
+    return "redirect:/loginPage";
+  }
+
+  @PostMapping("/userUpdate")
+  public String updatetUser(UserDto userDto) {
+    userService.updatetUser(userDto);
+    return "redirect:/loginPage";
+  }
+
+  @GetMapping("/userDelete")
+  public String userDelete(HttpSession session) {
+    UserDto user = (UserDto)session.getAttribute("USER");
+    String userId = user.getUserId();
+
+    userService.deleteUser(userId);
     session.invalidate();
     return "redirect:/loginPage";
   }
