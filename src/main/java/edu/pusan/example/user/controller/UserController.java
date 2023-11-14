@@ -25,6 +25,12 @@ public class UserController {
     return "login";
   }
 
+  @GetMapping("/userUpdatePage")
+  public String userUpdatePage(Model model) {
+    model.addAttribute("dept", deptService.getDepts());
+    return "userUpdate";
+  }
+
   @GetMapping("signUpPage")
   public String singUpPage(Model model) {
     model.addAttribute("dept", deptService.getDepts());
@@ -49,9 +55,26 @@ public class UserController {
     return "redirect:/loginPage";
   }
 
+  @PostMapping("/userUpdate")
+  public String updateUser(UserDto userDto) {
+    userService.updateUser(userDto);
+    return "redirect:/loginPage";
+  }
+
   @GetMapping("/logout")
   public String logoutProcess(HttpSession session) {
     session.invalidate();
+    return "redirect:/loginPage";
+  }
+
+  @GetMapping("/userDelete")
+  public String deleteUser(HttpSession session) {
+    UserDto user = (UserDto) session.getAttribute("USER");
+    String userId = user.getUserId();
+
+    userService.deleteUser(userId);
+    session.invalidate();
+
     return "redirect:/loginPage";
   }
 }

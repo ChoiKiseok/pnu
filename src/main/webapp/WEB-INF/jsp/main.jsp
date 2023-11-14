@@ -18,5 +18,7 @@
   <h1>phone: <c:out value="${USER.phone}"></c:out></h1>
 
   <button type="button" onclick="window.location='logout'">로그아웃</button>
+  <button type="button" onclick="window.location='userUpdatePage'">회원정보 수정</button>
+  <button type="button" onclick="window.location='boardListPage'">게시판</button>
 </body>
 </html>
