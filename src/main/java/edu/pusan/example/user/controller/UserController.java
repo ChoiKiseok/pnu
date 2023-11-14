@@ -13,7 +13,6 @@ import edu.pusan.example.user.service.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
 @Controller
 @RequiredArgsConstructor
 @Slf4j
@@ -26,15 +25,20 @@ public class UserController {
     return "login";
   }
 
-  @GetMapping("/signUpPage")
-  public String signUpPage(Model model) {
-    model.addAttribute("dept", deptService.getDeptList());
+  @GetMapping("signUpPage")
+  public String singUpPage(Model model) {
+    model.addAttribute("dept", deptService.getDepts());
     return "signUp";
+  }
+
+  @GetMapping("userUpdatePage")
+  public String userUpdatePage(Model model) {
+    model.addAttribute("dept", deptService.getDepts());
+    return "userUpdate";
   }
 
   @PostMapping("/login")
   public String loginProcess(HttpSession session, UserDto user) {
-    
     if(userService.checkUser(user)) {
       session.setAttribute("USER", userService.getUserInfo(user));
       return "redirect:/main";
@@ -51,10 +55,25 @@ public class UserController {
     return "redirect:/loginPage";
   }
 
-  @GetMapping("logout")
-  public String logout(HttpSession session) {
+  @GetMapping("/logout")
+  public String logoutProcess(HttpSession session) {
     session.invalidate();
     return "redirect:/loginPage";
   }
-  
+
+  @PostMapping("/userUpdate")
+  public String updatetUser(UserDto userDto) {
+    userService.updatetUser(userDto);
+    return "redirect:/loginPage";
+  }
+
+  @GetMapping("/userDelete")
+  public String userDelete(HttpSession session) {
+    UserDto user = (UserDto)session.getAttribute("USER");
+    String userId = user.getUserId();
+
+    userService.deleteUser(userId);
+    session.invalidate();
+    return "redirect:/loginPage";
+  }
 }

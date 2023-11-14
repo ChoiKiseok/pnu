@@ -10,8 +10,11 @@ import edu.pusan.example.user.domain.dto.UserDto;
 import edu.pusan.example.user.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserService {
   private final UserRepository userRepository;
   private final DeptService deptService;
@@ -32,9 +35,10 @@ public class UserService {
       .name(user.getName())
       .phone(user.getPhone())
       .deptNm(user.getDept().getDeptNm())
+      .deptCd(user.getDept().getDeptCd())
       .build();
   }
-
+  
   public Boolean checkUser(UserDto userDto) {
     Optional<User> user = userRepository.findById(userDto.getUserId());
 
@@ -49,4 +53,13 @@ public class UserService {
     }
   }
 
+  public void updatetUser(UserDto userDto) {
+    User user = userDto.build();
+    user.setDept(deptService.getDeptInfo(userDto.getDeptCd()));
+    userRepository.save(user);
+  }
+
+  public void deleteUser(String userId) {
+    userRepository.deleteById(userId);
+  }
 }

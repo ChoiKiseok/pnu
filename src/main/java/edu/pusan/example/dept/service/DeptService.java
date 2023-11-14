@@ -13,7 +13,7 @@ import lombok.RequiredArgsConstructor;
 public class DeptService {
   private final DeptRepository deptRepository;
 
-  public List<Dept> getDeptList() {
+  public List<Dept> getDepts() {
     return deptRepository.findAll();
   }
 
