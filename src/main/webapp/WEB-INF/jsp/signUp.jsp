@@ -57,8 +57,7 @@
 		</table>
 		
 		<button type="button" onclick="window.history.back()">이전</button>
-		<!-- <button type="button" id="okBtn">등록</button> -->
-		<button type="submit">등록</button>
+		<button type="button" id="okBtn">등록</button>
 	</form>
 </body>
 
